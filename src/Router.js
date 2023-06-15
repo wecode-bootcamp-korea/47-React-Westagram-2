@@ -9,10 +9,13 @@ import MainSujeong from './pages/kimsujeong/MainSujeong/MainSujeong';
 import LoginHoejin from './pages/yanghoejin/LoginHoejin/LoginHoejin';
 import MainHoejin from './pages/yanghoejin/MainHoejin/MainHoejin';
 
+import Nav from './components/Nav/Nav';
+
 // import 한 컴포넌트에 대한 경로를 각각 설정해줍니다.
 const Router = () => {
   return (
     <BrowserRouter>
+      <Nav />
       <Routes>
         <Route path="/LoginSujeong" element={<LoginSujeong />} />
         <Route path="/MainSujeong" element={<MainSujeong />} />

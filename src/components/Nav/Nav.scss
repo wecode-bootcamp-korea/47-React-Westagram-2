@@ -1,2 +1,135 @@
 .nav {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 280px;
+  width: 100%;
+  height: 70px;
+  background-color: white;
+  border-bottom: solid 1px #e5e5e5;
+
+  .logo {
+    display: flex;
+    font-size: 40px;
+    font-weight: lighter;
+    gap: 10px;
+
+    p {
+      margin: 0px;
+    }
+
+    img {
+      width: 35px;
+      height: 35px;
+    }
+
+    h1 {
+      font-family: 'Lobster', cursive;
+      font-size: 30px;
+      margin: 0px;
+    }
+  }
+  .searchUser {
+    position: relative;
+
+    .explore {
+      border: solid 1px #e5e5e5;
+      border-radius: 5px;
+      width: 250px;
+      height: 25px;
+
+      text-align: center;
+      background-color: #f6f6f6;
+    }
+    #search {
+      width: 230px;
+      height: 250px;
+      z-index: 1;
+      background-color: white;
+      border: solid 1px #e5e5e5;
+      border-radius: 5px;
+      padding: 10px;
+      position: absolute;
+      top: 55px;
+      right: 2px;
+      overflow: scroll;
+      box-shadow: 1px 1px 5px 1px rgba(0, 0, 0, 0.2);
+      opacity: 0;
+    }
+  }
+  .emoji {
+    display: flex;
+    gap: 20px;
+
+    img {
+      width: 30px;
+      height: 30px;
+    }
+
+    .manPlusProfile {
+      position: relative;
+      display: inline-block;
+
+      button {
+        background-color: white;
+        border: solid 0px;
+      }
+
+      .profileMenu {
+        width: 200px;
+        height: 160px;
+        display: flex;
+        flex-direction: column;
+        position: absolute;
+        top: 50px;
+        right: -27px;
+        z-index: 1;
+        opacity: 0;
+        border-radius: 10px;
+        background-color: white;
+        box-shadow: 1px 1px 5px 1px rgba(0, 0, 0, 0.2);
+        padding: 0px;
+        -webkit-border-radius: 10px;
+        -webkit-box-shadow: 1px 1px 5px 1px rgba(0, 0, 0, 0.2);
+        -moz-border-radius: 10px;
+        &::after {
+          content: '';
+          position: absolute;
+          border-style: solid;
+          border-width: 0 10px 15px;
+          border-color: #ffffff transparent;
+          display: block;
+          width: 0;
+          z-index: 1;
+          top: -15px;
+          left: 140px;
+
+          .eachProfile {
+            display: flex;
+            align-items: center;
+            padding: 10px;
+
+            img {
+              width: 20px;
+              height: 20px;
+            }
+            p {
+              padding-left: 8px;
+              margin: 0px;
+            }
+          }
+          .logout {
+            border-top: solid 1px #e5e5e5;
+            padding: 10px;
+            margin: 0px;
+
+            p {
+              padding-left: 8px;
+              margin: 0px;
+            }
+          }
+        }
+      }
+    }
+  }
 }
