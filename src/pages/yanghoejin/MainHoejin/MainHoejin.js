@@ -15,14 +15,15 @@ function MainHoejin() {
   };
 
   const post = e => {
-    console.log(132);
     const postSaveComment = [...saveComment];
     postSaveComment.push(idValue);
     setSaveComment(postSaveComment);
     setIdValue('');
   };
 
-  console.log(idValue);
+  const CommentFull = props => {
+    return <p className="userComment">wecode {props.userComment}</p>;
+  };
 
   return (
     <div className="mainHoejin">
@@ -76,8 +77,7 @@ function MainHoejin() {
               </p>
               <div id="newComment">
                 {saveComment.map((ele, idx) => {
-                  console.log(ele);
-                  return <p key={idx}>wecode {ele}</p>;
+                  return <CommentFull userComment={ele} key={idx} />;
                 })}
               </div>
             </div>
