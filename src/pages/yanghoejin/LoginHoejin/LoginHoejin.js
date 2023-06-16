@@ -7,6 +7,9 @@ function LoginHoejin() {
 
   const [idValue, setIdValue] = useState('');
   const [pwValue, setPwValue] = useState('');
+  const [btnColor, setBtnColor] = useState(true);
+
+  let conditon = idValue.indexOf('@') !== -1 && pwValue.length >= 5;
 
   function goToMain() {
     navigate('/MainHoejin');
@@ -18,6 +21,10 @@ function LoginHoejin() {
 
   const savePwValue = e => {
     setPwValue(e.target.value);
+  };
+
+  const changeBtnColor = () => {
+    setBtnColor(!btnColor);
   };
 
   return (
@@ -42,7 +49,15 @@ function LoginHoejin() {
               savePwValue(e);
             }}
           />
-          <button id="button" onClick={goToMain}>
+          <button
+            style={{
+              opacity: `${conditon ? 1 : 0.3}`,
+              disabled: `${conditon ? 'false' : 'true'}`,
+            }}
+            id="button"
+            onChange={changeBtnColor}
+            onClick={goToMain}
+          >
             로그인
           </button>
         </div>
