@@ -1,6 +1,29 @@
+import { useState } from 'react';
 import './MainHoejin.scss';
 
 function MainHoejin() {
+  const [idValue, setIdValue] = useState('');
+  const [saveComment, setSaveComment] = useState([]);
+  const [btnColor, setBtnColor] = useState(0.3);
+
+  const comment = e => {
+    setIdValue(e.target.value);
+  };
+
+  const changeBtnColor = () => {
+    setBtnColor(!btnColor);
+  };
+
+  const post = e => {
+    console.log(132);
+    const postSaveComment = [...saveComment];
+    postSaveComment.push(idValue);
+    setSaveComment(postSaveComment);
+    setIdValue('');
+  };
+
+  console.log(idValue);
+
   return (
     <div className="mainHoejin">
       <main>
@@ -13,7 +36,7 @@ function MainHoejin() {
                   alt="roundimg"
                   src="./images/yanghoejin/IMG_7632.jpg"
                 />
-                <p>yang hoejin</p>
+                <p>ggul_bbang</p>
               </div>
               <img
                 alt="더보기"
@@ -43,19 +66,39 @@ function MainHoejin() {
                   src="./images/yanghoejin/IMG_7632.jpg"
                 />
                 <p>
-                  <span className="weightbolder">aineworld</span>님
+                  <span className="weightbolder">wecode</span>님
                   <span className="weightbolder">외 10명</span>이 좋아합니다
                 </p>
               </div>
               <p>
-                <span className="weightbolder">yang hoejin</span> 올림픽공원
-                황화코스모스...<span className="gray">더보기</span>
+                <span className="weightbolder">ggul_bbang</span> 꿀빵이와 앙꼬
+                그리고 햄빵이<span className="gray">더보기</span>
               </p>
-              {/* <div id="newComment"></div> */}
+              <div id="newComment">
+                {saveComment.map((ele, idx) => {
+                  console.log(ele);
+                  return <p key={idx}>wecode {ele}</p>;
+                })}
+              </div>
             </div>
-            <form className="comment">
-              <input id="input" placeholder="댓글 달기..." />
-              <button id="button">게시</button>
+            <form className="enterComment">
+              <input
+                id="input"
+                placeholder="댓글 달기..."
+                value={idValue}
+                onChange={e => {
+                  comment(e);
+                }}
+              />
+              <button
+                id="button"
+                style={{ opacity: `${idValue > '0' ? 1 : 0.3}` }}
+                disabled={idValue > '0' ? false : true}
+                onChange={changeBtnColor}
+                onClick={post}
+              >
+                게시
+              </button>
             </form>
           </article>
         </div>

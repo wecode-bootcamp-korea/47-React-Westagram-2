@@ -9,7 +9,7 @@ function LoginHoejin() {
   const [pwValue, setPwValue] = useState('');
   const [btnColor, setBtnColor] = useState(true);
 
-  let conditon = idValue.indexOf('@') !== -1 && pwValue.length >= 5;
+  const conditon = idValue.indexOf('@') !== -1 && pwValue.length >= 5;
 
   function goToMain() {
     navigate('/MainHoejin');
@@ -52,9 +52,9 @@ function LoginHoejin() {
           <button
             style={{
               opacity: `${conditon ? 1 : 0.3}`,
-              disabled: `${conditon ? 'false' : 'true'}`,
             }}
             id="button"
+            disabled={conditon ? false : true}
             onChange={changeBtnColor}
             onClick={goToMain}
           >
