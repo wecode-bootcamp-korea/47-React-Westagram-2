@@ -1,37 +1,53 @@
 import './MainSujeong.scss';
+import React, { useState } from 'react';
 
 const MainSujeong = () => {
+  const [comments, setComments] = useState([
+    { content: '멍멍이귀여워불쌍해', date: '2023년 오후 1:10:10에 달린 댓글' },
+  ]);
+
   const handleKeyUp = e => {
     const commentInput = document.querySelector('.comment-input');
-    const commentList = document.querySelector('.comment-list');
 
     if (e.key === 'Enter') {
       e.preventDefault();
       const commentText = commentInput.value;
 
       if (commentText !== '') {
-        const newComment = document.createElement('li');
-        newComment.textContent = commentText;
-        commentList.appendChild(newComment);
-        commentInput.value = '';
+        const newComment = {
+          content: commentText,
+          date: getCurrentTime(),
+        };
+
+        setComments(prevComments => [...prevComments, newComment]);
+        e.target.value = '';
       }
     }
   };
 
-  const handleClick = () => {
+  const handleClick = e => {
     const commentInput = document.querySelector('.comment-input');
-    const commentList = document.querySelector('.comment-list');
-
     const commentText = commentInput.value;
 
     if (commentText !== '') {
-      const newComment = document.createElement('li');
-      newComment.textContent = commentText;
-      commentList.appendChild(newComment);
+      const newComment = {
+        content: commentText,
+        date: getCurrentTime(),
+      };
+
+      setComments(prevComments => [...prevComments, newComment]);
       commentInput.value = '';
     } else {
       alert('글을 작성해주세요');
     }
+  };
+
+  const getCurrentTime = () => {
+    const currentTime = new Date().toLocaleString('ko-KR', {
+      hour12: true,
+    });
+
+    return `${currentTime}에 달린댓글`;
   };
   return (
     <div className="MainSujeong">
@@ -84,10 +100,12 @@ const MainSujeong = () => {
               <p className="small-font likes">ㅇㅇ님 외 n명이 좋아합니다.</p>
             </div>
             <ul className="comment-list">
-              <li className="comment-content">
-                <p>멍멍이귀여워불쌍해</p>
-                <div className="date">몇분전에 달린댓글</div>
-              </li>
+              {comments.map((comment, i) => (
+                <li className="comment-content" key={i}>
+                  <p>{comment.content}</p>
+                  <div className="date">{comment.date}</div>
+                </li>
+              ))}
             </ul>
             <div className="write-commments">
               <input
