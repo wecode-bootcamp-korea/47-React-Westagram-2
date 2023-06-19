@@ -47,7 +47,7 @@ const MainSujeong = () => {
       hour12: true,
     });
 
-    return `${currentTime}에 달린댓글`;
+    return `${currentTime}에 달린 댓글`;
   };
   return (
     <div className="MainSujeong">
