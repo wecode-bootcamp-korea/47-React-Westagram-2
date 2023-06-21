@@ -1,3 +1,4 @@
+import { useEffect } from 'react';
 import { useState } from 'react';
 import CommentFull from './CommentFull';
 import { ASIDE_BOTTOM } from './AsideBottom';
@@ -7,6 +8,13 @@ function MainHoejin() {
   const [idValue, setIdValue] = useState('');
   const [saveComment, setSaveComment] = useState([]);
   const [btnColor, setBtnColor] = useState(0.3);
+  const [datas, setData] = useState([]);
+
+  useEffect(() => {
+    fetch('/data/feed.json')
+      .then(response => response.json())
+      .then(response => setData(response));
+  });
 
   const comment = e => {
     setIdValue(e.target.value);
@@ -27,78 +35,82 @@ function MainHoejin() {
     <div className="mainHoejin">
       <main>
         <div className="feeds">
-          <article>
-            <div className="top">
-              <div className="topleft">
-                <img
-                  className="roundimg"
-                  alt="roundimg"
-                  src="./images/yanghoejin/IMG_7632.jpg"
-                />
-                <p>ggul_bbang</p>
-              </div>
-              <img
-                alt="더보기"
-                src="./images/yanghoejin/free-icon-three-dots-6941941.png"
-              />
-            </div>
-            <img
-              className="mainimg"
-              alt="mainimg"
-              src="./images/yanghoejin/IMG_7631 2.jpg"
-            />
-            <div className="bottom">
-              <div className="articleimg">
-                <div className="articleimgleft">
-                  <img alt="heart" src="./images/yanghoejin/heart.png" />
+          {datas.map(data => {
+            return (
+              <article key={data.id}>
+                <div className="top">
+                  <div className="topleft">
+                    <img
+                      className="roundimg"
+                      alt="roundimg"
+                      src={data.roundImg}
+                    />
+                    <p>{data.nickname}</p>
+                  </div>
                   <img
-                    alt="말풍선"
-                    src="./images/yanghoejin/speech-bubble.png"
+                    alt="더보기"
+                    src="./images/yanghoejin/free-icon-three-dots-6941941.png"
                   />
-                  <img alt="공유" src="./images/yanghoejin/export-file.png" />
                 </div>
-                <img alt="책갈피" src="./images/yanghoejin/bookmark.png" />
-              </div>
-              <div className="good">
-                <img
-                  alt="좋아요누른사람"
-                  src="./images/yanghoejin/IMG_7632.jpg"
-                />
-                <p>
-                  <span className="weightbolder">wecode</span>님
-                  <span className="weightbolder">외 10명</span>이 좋아합니다
-                </p>
-              </div>
-              <p>
-                <span className="weightbolder">ggul_bbang</span> 꿀빵이와 앙꼬
-                그리고 햄빵이<span className="gray">더보기</span>
-              </p>
-              <div id="newComment">
-                {saveComment.map((ele, idx) => {
-                  return <CommentFull userComment={ele} key={idx} />;
-                })}
-              </div>
-            </div>
-            <form className="enterComment">
-              <input
-                id="input"
-                placeholder="댓글 달기..."
-                value={idValue}
-                onChange={e => {
-                  comment(e);
-                }}
-              />
-              <button
-                id="button"
-                style={{ opacity: `${idValue > '0' ? 1 : 0.3}` }}
-                disabled={idValue > '0' ? false : true}
-                onChange={changeBtnColor}
-                onClick={post}
-              >
-                게시
-              </button>
-            </form>
-          </article>
+                <img className="mainimg" alt="mainimg" src={data.mainImg} />
+                <div className="bottom">
+                  <div className="articleimg">
+                    <div className="articleimgleft">
+                      <img alt="heart" src="./images/yanghoejin/heart.png" />
+                      <img
+                        alt="말풍선"
+                        src="./images/yanghoejin/speech-bubble.png"
+                      />
+                      <img
+                        alt="공유"
+                        src="./images/yanghoejin/export-file.png"
+                      />
+                    </div>
+                    <img alt="책갈피" src="./images/yanghoejin/bookmark.png" />
+                  </div>
+                  <div className="good">
+                    <img
+                      alt="좋아요누른사람"
+                      src="./images/yanghoejin/IMG_7632.jpg"
+                    />
+                    <p>
+                      <span className="weightbolder">wecode</span>님
+                      <span className="weightbolder">외 10명</span>이 좋아합니다
+                    </p>
+                  </div>
+                  <p>
+                    <span className="weightbolder">{data.nickname}</span>{' '}
+                    {data.text}
+                    <span className="gray">더보기</span>
+                  </p>
+                  <div id="newComment">
+                    {saveComment.map((ele, idx) => {
+                      return <CommentFull userComment={ele} key={idx} />;
+                    })}
+                  </div>
+                </div>
+                <form className="enterComment">
+                  <input
+                    id="input"
+                    placeholder="댓글 달기..."
+                    value={idValue}
+                    onChange={e => {
+                      comment(e);
+                    }}
+                  />
+                  <button
+                    id="button"
+                    style={{ opacity: `${idValue > '0' ? 1 : 0.3}` }}
+                    disabled={idValue > '0' ? false : true}
+                    onChange={changeBtnColor}
+                    onClick={post}
+                  >
+                    게시
+                  </button>
+                </form>
+              </article>
+            );
+          })}
         </div>
         <div className="main-right">
           <div className="wecode">
