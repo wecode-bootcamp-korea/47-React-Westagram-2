@@ -1,0 +1,23 @@
+[
+  {
+    "id": 1,
+    "roundImg": "./images/yanghoejin/IMG_7632.jpg",
+    "nickname": "ggul_bbang",
+    "mainImg": "./images/yanghoejin/IMG_7631 2.jpg",
+    "text": "꿀빵이"
+  },
+  {
+    "id": 2,
+    "roundImg": "./images/yanghoejin/IMG_7632.jpg",
+    "nickname": "ggul_bbang",
+    "mainImg": "./images/yanghoejin/IMG_7631 2.jpg",
+    "text": "앙꼬"
+  },
+  {
+    "id": 3,
+    "roundImg": "./images/yanghoejin/IMG_7632.jpg",
+    "nickname": "ggul_bbang",
+    "mainImg": "./images/yanghoejin/IMG_7631 2.jpg",
+    "text": "햄빵이"
+  }
+]
