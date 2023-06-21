@@ -1,4 +1,6 @@
 import { useState } from 'react';
+import CommentFull from './CommentFull';
+import { ASIDE_BOTTOM } from './AsideBottom';
 import './MainHoejin.scss';
 
 function MainHoejin() {
@@ -19,10 +21,6 @@ function MainHoejin() {
     postSaveComment.push(idValue);
     setSaveComment(postSaveComment);
     setIdValue('');
-  };
-
-  const CommentFull = props => {
-    return <p className="userComment">wecode {props.userComment}</p>;
   };
 
   return (
@@ -180,8 +178,9 @@ function MainHoejin() {
             </div>
           </div>
           <p className="gray">
-            Instagram 정보﹒지원﹒홍보 센터﹒API﹒채용
-            정보﹒개인정보처리방침﹒약관﹒디렉터리﹒프로필﹒해시태그﹒언어
+            {ASIDE_BOTTOM.map(ele => (
+              <span key={ele.id}>{ele.name}</span>
+            ))}
           </p>
           <p className="gray">ⓒ 2019 INSTAGRAM</p>
         </div>
