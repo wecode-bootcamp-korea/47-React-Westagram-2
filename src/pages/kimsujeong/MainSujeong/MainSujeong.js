@@ -262,13 +262,14 @@ const MainSujeong = () => {
               <button className="follow-btn">팔로우</button>
             </div>
           </div>
-          <p className="foot">
-            westagram 정보 • 지원 • 홍보 센터 • API • <br />
-            채용정보 • 개인정보처리방침 • 약관 • <br />
-            디렉터리 • 프로필 • 해시태그 • 언어
-            <br />
-            <br />@ 2023 westagram
-          </p>
+          <footer>
+            <ul className="footer">
+              {FOOTER_INFO_LIST.map(list => (
+                <span key={list.id}>{list.name}</span>
+              ))}
+              <br />@ 2023 westagram
+            </ul>
+          </footer>
         </div>
       </main>
     </div>
@@ -276,3 +277,17 @@ const MainSujeong = () => {
 };
 
 export default MainSujeong;
+
+const FOOTER_INFO_LIST = [
+  { id: 1, link: 'https://a', name: 'westagram 정보 •' },
+  { id: 2, link: 'https://b', name: '지원 •' },
+  { id: 3, link: 'https://c', name: '홍보센터 •' },
+  { id: 4, link: 'https://d', name: 'API •' },
+  { id: 5, link: 'https://e', name: '채용정보 •' },
+  { id: 6, link: 'https://f', name: '개인정보처리방침 •' },
+  { id: 7, ' lin': 'https://g', name: '약관 •' },
+  { id: 8, link: 'https://h', name: '디렉터리 •' },
+  { id: 9, link: 'https://i', name: '프로필 •' },
+  { id: 10, link: 'https://i', name: '해시태그 •' },
+  { id: 11, link: 'https://i', name: '언어 •' },
+];

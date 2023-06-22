@@ -3,46 +3,18 @@ import { useNavigate } from 'react-router-dom';
 import './LoginSujeong.scss';
 
 const LoginSujeong = () => {
-  const [ID, setID] = useState('');
+  const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-  const [isValidID, setIsValidID] = useState(true);
-  const [isValidPassword, setIsValidPassword] = useState(true);
-  const [isButtonDisabled, setIsButtonDisabled] = useState(true);
   const navigate = useNavigate();
 
-  const saveUserId = e => {
-    const value = e.target.value;
-    setID(value);
-    setIsValidID(validateID(value));
-    setIsButtonDisabled(
-      !value || !password || !validateID(value) || !isValidPassword
-    );
-  };
-
-  const savePassword = e => {
-    const value = e.target.value;
-    setPassword(value);
-    setIsValidPassword(validatePassword(value));
-    setIsButtonDisabled(
-      !ID || !value || !isValidID || !validatePassword(value)
-    );
-  };
-
-  const validateID = ID => {
-    const IDRegex = /@/;
-    return IDRegex.test(ID);
-  };
-
-  const validatePassword = password => {
-    return password.length >= 5;
-  };
+  const isEmailValid = email.includes('@');
+  const isButtonDisabled = !isEmailValid || password.length < 5;
 
   const handleSubmit = e => {
     e.preventDefault();
-
-    if (!isValidID) {
+    if (!isEmailValid) {
       alert('@ 포함 여부를 확인해주세요');
-    } else if (!isValidPassword) {
+    } else if (password.length < 5) {
       alert('비밀번호는 5자리 이상 입력해주세요');
     } else {
       alert('✅ 로그인에 성공하셨습니다.');
@@ -57,19 +29,19 @@ const LoginSujeong = () => {
           <h1>westagram</h1>
           <div className="input-box">
             <input
-              onChange={saveUserId}
+              onChange={e => setEmail(e.target.value)}
               type="text"
-              value={ID}
+              value={email}
               placeholder=" 전화번호, 사용자 이름 또는 이메일"
-              className={!isValidID ? 'invalid' : ''}
+              className={!isEmailValid ? 'invalid' : ''}
             />
           </div>
           <input
-            onChange={savePassword}
+            onChange={e => setPassword(e.target.value)}
             type="password"
             value={password}
             placeholder=" 비밀번호"
-            className={!isValidPassword ? 'invalid' : ''}
+            className={password.length < 5 ? 'invalid' : ''}
           />
 
           <button

@@ -120,6 +120,7 @@
     }
     .story {
       border: 1px solid rgb(208, 204, 204);
+      background-color: #fff;
       border-radius: 0.3em;
       padding: 1em;
       .small-title {
@@ -150,6 +151,7 @@
       }
     }
     .recommend {
+      background-color: #fff;
       margin-top: 1em;
       border: 1px solid rgb(208, 204, 204);
       border-radius: 0.3em;
@@ -190,9 +192,13 @@
         }
       }
     }
-    .foot {
-      font-size: 13px;
+    .footer {
+      font-size: 14px;
+      padding-top: 15px;
       color: rgb(196, 196, 196);
+      li {
+        color: grey;
+      }
     }
   }
 }
